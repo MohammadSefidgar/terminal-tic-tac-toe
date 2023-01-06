@@ -15,11 +15,36 @@
             ['O', 'O', 'X']
         ];
 */
-function validateMove(move, board) {
-    // Implement this at the end if you have time, otherwise you can help your teammates!
-    return true;
-}
 
+let a = [4,1];
+
+                
+            
+ let board = [
+            ['X', '_', '_'],
+            ['_', 'X', '_'],
+            ['O', 'O', 'X']
+        ];               
+           
+
+function validateMove(move, board) {
+  
+    if(
+         move.length != 3 ||
+         move[0] < '1' || move[0] > '3' ||
+         move[2] < '1' || move[2] > '3' ||
+         move[1] !== ',' ||
+         board[move[0]-1][move[2]-1] !== '_'
+     ) {
+         console.log('Try again...');
+         return false;
+     }
+
+     return true;
+ }
+    // Implement this at the end if you have time, otherwise you can help your teammates!
+
+console.log(validateMove (a,board))
 /*
     Given 3 parameters:
         - a board (an array of arrays)
@@ -32,5 +57,9 @@ function validateMove(move, board) {
             - Return true
 */
 export function makeMove(board, move, player) {
+      if(validateMove(move, board)) {
+         board[move[0]-1][move[2]-1] = player;
+         return true;
+     }
     return false;
 }
